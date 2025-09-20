@@ -1,3 +1,8 @@
+/*
+  © 2025 Robson Cassiano — MIT License
+  This file is part of a project licensed under the MIT License. See the LICENSE file at the repository root for full text.
+  Este arquivo faz parte de um projeto licenciado sob a Licença MIT. Consulte o arquivo LICENSE na raiz do repositório para o texto completo.
+*/
 // --- LÓGICA DE INTERNACIONALIZAÇÃO (I18N) ---
 const translations = {
   'pt': {

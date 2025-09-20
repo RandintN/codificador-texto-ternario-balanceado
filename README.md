@@ -1,3 +1,8 @@
+<!--
+  © 2025 Robson Cassiano — MIT License
+  This repository is licensed under the MIT License. See the LICENSE file at the repository root for full text.
+  Este repositório está licenciado sob a Licença MIT. Consulte o arquivo LICENSE na raiz para o texto completo.
+-->
 # Codificador de Texto Ternário Balanceado / Balanced Ternary Text Encoder
 
 Este projeto é uma aplicação web simples que converte texto para um código em ternário balanceado e faz o caminho inverso (ternário → texto). Ele demonstra conceitos de eficiência do sistema ternário e inclui recursos de usabilidade como cópia rápida, alternância de idioma (PT/EN) e explicações detalhadas.
@@ -40,7 +45,7 @@ Observação: a funcionalidade opcional de geração de conteúdo (Gemini) perma
 - Os recursos locais estão em `css/` e `js/`.
 
 ### Licença
-- © Robson Cassiano. Licenciado sob MIT. Consulte o cabeçalho do site e ajuste o arquivo de licença se necessário.
+- © 2025 Robson Cassiano. Licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](LICENSE) para detalhes.
 
 ---
 
@@ -78,4 +83,4 @@ Note: the optional content generation feature (Gemini) is disabled by default (e
 - Local assets live under `css/` and `js/`.
 
 ### License
-- © Robson Cassiano. Licensed under MIT. See the site footer and adjust the LICENSE file if needed.
+- © 2025 Robson Cassiano. Licensed under the MIT License. See [LICENSE](LICENSE) for details.
