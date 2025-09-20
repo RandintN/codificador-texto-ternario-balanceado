@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codificador de Texto Ternário Balanceado</title>
+  <!-- Incluindo Tailwind CSS para estilização -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- KaTeX para renderização de LaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU0KOVEMeaYqaGktk/OKyV7hNstLSchGsEActlV7AyLkLVghswDkZX0" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlVwcpaNlchBQDZvIpsFiEA/4maXtePvMxp+FMhMlVLnwO4bCEJypZ934dV" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-slate-100 font-sans flex items-center justify-center min-h-screen p-4">
+
+<button id="lang-switcher">EN | PT</button>
+
+<div class="w-full max-w-4xl mx-auto">
+  <header class="mb-8 text-center">
+    <h1 class="text-4xl font-bold text-slate-800" data-key="title">Codificador de Texto Ternário Balanceado</h1>
+  </header>
+
+  <main class="space-y-6">
+    <!-- Seção de Teoria -->
+    <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+      <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+        <h2 class="text-2xl font-semibold text-slate-700" data-key="theoryTitle">Teoria</h2>
+        <div class="flex items-center gap-2">
+          <button id="explainTheoryButton" data-key="explainTheoryButton" class="text-sm bg-purple-100 text-purple-700 font-semibold py-1 px-3 rounded-full hover:bg-purple-200 transition disabled:opacity-50 disabled:cursor-not-allowed">Explicar de Outra Forma ✨</button>
+          <button id="resetTheoryButton" data-key="resetTheoryButton" class="hidden text-sm bg-slate-200 text-slate-700 font-semibold py-1 px-3 rounded-full hover:bg-slate-300 transition">Original</button>
+        </div>
+      </div>
+      <div id="theoryContent" class="text-slate-600 leading-relaxed"></div>
+      <div id="theoryLoader" class="hidden flex items-center justify-center gap-2 text-slate-500 p-4">
+        <div class="loader"></div>
+        <span data-key="generatingExplanation">A gerar uma nova explicação...</span>
+      </div>
+    </div>
+
+    <!-- Botão de Limpeza Central -->
+    <div class="flex justify-center">
+      <button id="clearButton" class="bg-slate-500 text-white font-bold py-2 px-6 rounded-md hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition" data-key="clearButton">
+        Limpar Tudo
+      </button>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Coluna de Codificação -->
+      <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200 space-y-4">
+        <h2 class="text-2xl font-semibold text-slate-700" data-key="encodeTitle">Codificar: Texto → Ternário</h2>
+        <div>
+          <label for="inputText" class="font-medium text-slate-600" data-key="inputTextLabel">Digite o texto</label>
+          <textarea id="inputText" class="mt-1 w-full h-24 p-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 transition" data-key-placeholder="inputTextPlaceholder" placeholder="Escreva algo aqui..."></textarea>
+        </div>
+        <button id="encodeButton" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition" data-key="encodeButton">
+          Codificar
+        </button>
+        <!-- Resultados da Codificação -->
+        <div id="encodeResults" class="hidden space-y-4">
+          <div class="relative">
+            <h3 class="font-medium text-slate-600" data-key="binaryLabel">Binário <span id="binaryCount" class="text-sm text-slate-500"></span></h3>
+            <div id="binaryOutput" class="output-box mt-1 bg-slate-50 p-3 pr-12 rounded-md font-mono text-sm break-words h-28 overflow-y-auto"></div>
+            <button class="copy-btn" onclick="copyToClipboard('binaryOutput')" aria-label="Copiar Binário">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3z"/></svg>
+            </button>
+          </div>
+          <div class="relative">
+            <h3 class="font-medium text-slate-600" data-key="ternaryLabel">Ternário <span id="ternaryCount" class="text-sm text-slate-500"></span></h3>
+            <div id="ternaryOutput" class="output-box mt-1 bg-slate-50 p-3 pr-12 rounded-md font-mono text-sm break-words h-28 overflow-y-auto"></div>
+            <button class="copy-btn" onclick="copyToClipboard('ternaryOutput')" aria-label="Copiar Ternário">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3z"/></svg>
+            </button>
+          </div>
+          <div id="efficiencyInfo" class="pt-4 border-t border-slate-200">
+            <h3 class="font-medium text-slate-600" data-key="efficiencyTitle">Eficiência do Ternário Balanceado</h3>
+            <p class="text-sm text-slate-500 mt-1" data-key="efficiencyText"></p>
+          </div>
+        </div>
+        <!-- Funcionalidades Gemini -->
+        <div id="geminiFeatures" class="hidden space-y-4 pt-4 border-t border-slate-200">
+          <button id="generateRiddleButton" class="w-full bg-purple-600 text-white font-bold py-3 px-4 rounded-md hover:bg-purple-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed" data-key="generateRiddleButton">
+            Gerar Charada ✨
+          </button>
+          <div id="riddleResult" class="hidden relative">
+            <h3 class="font-medium text-slate-600" data-key="riddleLabel">Charada Gerada</h3>
+            <div id="riddleLoader" class="hidden flex items-center justify-center gap-2 text-slate-500 p-4">
+              <div class="loader"></div>
+              <span data-key="generatingRiddle">A gerar charada...</span>
+            </div>
+            <div id="riddleOutput" class="output-box mt-1 bg-slate-50 p-3 pr-12 rounded-md text-sm break-words min-h-[7rem] overflow-y-auto"></div>
+            <button class="copy-btn" onclick="copyToClipboard('riddleOutput')" aria-label="Copiar Charada">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna de Decodificação -->
+      <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200 space-y-4">
+        <h2 class="text-2xl font-semibold text-slate-700" data-key="decodeTitle">Decodificar: Ternário → Texto</h2>
+        <div>
+          <label for="ternaryInput" class="font-medium text-slate-600" data-key="ternaryInputLabel">Digite o código ternário</label>
+          <textarea id="ternaryInput" class="mt-1 w-full h-24 p-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-green-500 transition" data-key-placeholder="ternaryInputPlaceholder" placeholder="Cole o código ternário aqui..."></textarea>
+        </div>
+        <button id="decodeButton" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition" data-key="decodeButton">
+          Decodificar
+        </button>
+        <!-- Resultado da Decodificação -->
+        <div id="decodeResult" class="hidden">
+          <div class="relative">
+            <h3 class="font-medium text-slate-600" data-key="decodedTextLabel">Texto Decodificado</h3>
+            <div id="decodedTextOutput" class="output-box mt-1 bg-slate-50 p-3 pr-12 rounded-md font-mono text-sm break-words h-28 overflow-y-auto"></div>
+            <p id="decodeError" class="text-red-500 text-sm mt-1"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Seção de Explicação Detalhada -->
+  <div class="w-full max-w-4xl mx-auto my-6">
+    <div class="bg-white rounded-lg shadow-md border border-slate-200">
+      <button id="toggleExplanationButton" class="w-full flex justify-between items-center p-4 font-semibold text-slate-700 hover:bg-slate-50 rounded-lg">
+        <span data-key="detailedExplanationTitle">Ver Explicação Detalhada</span>
+        <svg id="explanationIcon" class="w-5 h-5 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+        </svg>
+      </button>
+      <div id="detailedExplanationContentWrapper" class="hidden">
+        <div id="detailedExplanationContent" class="p-6 border-t border-slate-200 text-slate-600 leading-relaxed space-y-4">
+          <!-- Conteúdo será injetado aqui pelo JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center mt-8 text-slate-500 text-sm">
+    <p data-key="footerLicense">&copy; Robson Cassiano. Lançado sob a licença MIT.</p>
+    <p class="mt-1" data-key="footerMotto">Vida Longa e Próspera 🖖🏻</p>
+  </footer>
+
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

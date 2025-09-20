@@ -1,0 +1,14 @@
+# www.robotstxt.org/
+# Last updated: 2025-09-20
+
+# Allow crawling of the entire site
+User-agent: *
+Allow: /
+
+# Explicitly allow static asset folders (clarity for some crawlers)
+Allow: /css/
+Allow: /js/
+
+# If you ever add private routes, list them below as Disallow lines.
+# Disallow: /admin/
+# Disallow: /api/
