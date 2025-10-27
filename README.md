@@ -3,6 +3,9 @@
   This repository is licensed under the MIT License. See the LICENSE file at the repository root for full text.
   Este repositório está licenciado sob a Licença MIT. Consulte o arquivo LICENSE na raiz para o texto completo.
 -->
+
+Live Link: https://randintn.github.io/codificador-texto-ternario-balanceado/
+
 # Balanced Ternary Text Encoder / Codificador de Texto Ternário Balanceado
 
 This project is a simple web app that converts text to balanced-ternary code and also decodes ternary back to text. It showcases concepts around ternary efficiency and includes usability features such as quick copy, language switch (PT/EN), and detailed explanations.
@@ -47,6 +50,9 @@ Note: the optional content generation feature (Gemini) is disabled by default (e
 - © 2025 Robson Cassiano. Licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ## 🇧🇷 Português
+
+Veja funcionando: https://randintn.github.io/codificador-texto-ternario-balanceado/
+
 
 - Título: Codificador de Texto Ternário Balanceado
 - Tecnologias principais: HTML, Tailwind via CDN, KaTeX via CDN, JavaScript vanilla, CSS próprio
