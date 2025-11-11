@@ -4,7 +4,7 @@
   Este repositório está licenciado sob a Licença MIT. Consulte o arquivo LICENSE na raiz para o texto completo.
 -->
 
-Live Link: https://randintn.github.io/codificador-texto-ternario-balanceado/
+Live Link: https://tryquetra.github.io/balanced-ternary-text-encoder/
 
 # Balanced Ternary Text Encoder / Codificador de Texto Ternário Balanceado
 
@@ -51,7 +51,7 @@ Note: the optional content generation feature (Gemini) is disabled by default (e
 
 ## 🇧🇷 Português
 
-Veja funcionando: https://randintn.github.io/codificador-texto-ternario-balanceado/
+Veja funcionando: https://tryquetra.github.io/balanced-ternary-text-encoder/
 
 
 - Título: Codificador de Texto Ternário Balanceado
